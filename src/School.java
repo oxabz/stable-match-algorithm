@@ -13,7 +13,9 @@ public class School {
         pref = new Student[studentCount];
     }
 
-    void addPref(Student student, int rank){
+    void addPref(Student student, int rank) throws CSVInvalideException {
+        if(pref[rank-1]!= null)
+            throw new CSVInvalideException("la liste de préférence de " + this.name + " est invalide");
         pref[rank-1]=student;
     }
 
@@ -36,7 +38,7 @@ public class School {
     public List<Student> getChoice(boolean[] mask){
         var r = new ArrayList<Student>();
         int i = 0;
-        while (r.size()<cap){
+        while (r.size()<cap && i < mask.length){
             if (mask[i]){
                 r.add(pref[i]);
             }

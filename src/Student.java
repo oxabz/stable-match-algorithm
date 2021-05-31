@@ -10,12 +10,15 @@ public class Student {
         pref = new School[schoolCount];
     }
 
-    void addPref(School school, int rank){
+
+    void addPref(School school, int rank) throws CSVInvalideException {
+        if(pref[rank-1]!=null)
+            throw new CSVInvalideException("la liste des preferences de "+ this.name +" est invalide");
         pref[rank-1] = school;
     }
 
     School getChoice(int rank){
-        return pref[rank-1];
+        return (rank<pref.length?pref[rank-1]:null);
     }
 
     public String getName() {
